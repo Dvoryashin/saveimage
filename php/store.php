@@ -5,7 +5,7 @@ $username = $_POST['username'];
 //dirname returns the path of the parent directory
 //getcwd returns the path of current working directory
 $dirpath = dirname(getcwd());
-$location = $dirpath. '/files/' .$filename;
+$location = $dirpath. '/files/' . $username . '+' . $filename;
 
 $upload_result = '';
 $time = time() + (60 * 60 * 24 * 1);
