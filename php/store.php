@@ -1,25 +1,27 @@
 <?php
 
 $filename = $_FILES['uploadImage']['name'];
-
+$username = $_POST['username'];
+//dirname returns the path of the parent directory
+//getcwd returns the path of current working directory
 $dirpath = dirname(getcwd());
 $location = $dirpath. '/files/' .$filename;
 
-$result_text = '';
+$upload_result = '';
 $time = time() + (60 * 60 * 24 * 1);
 $path = "/";
 
 if (move_uploaded_file($_FILES['uploadImage']['tmp_name'], $location)) { 
 
-    $result_text = 'Image upload was a success!';
+    $upload_result = 'true';
 
 } else { 
 
-    $result_text = 'Something went wrong. Please, try again';
+    $upload_result = 'false';
 
 }
 
-setcookie("result_text", $result_text, $time, $path);
+setcookie('upload_result', $upload_result, $time, $path);
 
 header('Location: http://www.saveimage.com');
 ?>
