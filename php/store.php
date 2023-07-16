@@ -9,6 +9,7 @@ $location = $dirpath. '/files/'. $username . "+" . $filename;
 
 $mysqli = new mysqli('localhost', 'admin', 'password', 'saveimage');
 $mysqli->query("INSERT INTO files (username, filename) VALUES ('$username', '$filename'); ");
+
 $upload_result = '';
 $time = time() + (60 * 60 * 24 * 1);
 $path = "/";
