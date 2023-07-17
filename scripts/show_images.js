@@ -1,12 +1,20 @@
 import get_cookie from "./get_cookie.js";
 
-var i = 6;
+window.onload = function get_body() {
 
-// while(i > 0){
+    body = document.getElementsByTagName('body')[0];
+}
+  
 
-//     var img = document.createElement("img");
-//     img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
-//     var src = document.getElementById("header");
-//     src.appendChild(img);
+var i = 0;
+var images = document.getElementById('images');
 
-// }
+while(i < 6){
+
+    var img = document.createElement("img");
+    console.log(get_cookie(i));
+    img.src = "/files/" + get_cookie(i);
+    images.appendChild(img);
+    i = i + 1;
+
+}

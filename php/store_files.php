@@ -1,30 +1,32 @@
 <?php
-
-$filename = $_FILES['uploadImage']['name'];
-$username = $_POST['username'];
-//dirname returns the path of the parent directory
-//getcwd returns the path of current working directory
-$dirpath = dirname(getcwd());
-$location = $dirpath. '/files/'. $username . "+" . $filename;
-
 $mysqli = new mysqli('localhost', 'admin', 'password', 'saveimage');
-$mysqli->query("INSERT INTO files (username, filename) VALUES ('$username', '$filename'); ");
+if(isset($_FILES['upload_image'])){
+    $filename = $_FILES['uploadImage']['name'];
+    $username = $_POST['username'];
+    //dirname returns the path of the parent directory
+    //getcwd returns the path of current working directory
+    $dirpath = dirname(getcwd());
+    $location = $dirpath. '/files/'. $username . "." . $filename;
 
-$upload_result = '';
-$time = time() + (60 * 60 * 24 * 1);
-$path = "/";
+    $mysqli->query("INSERT INTO files (username, filename) VALUES ('$username', '$filename'); ");
 
-if (move_uploaded_file($_FILES['uploadImage']['tmp_name'], $location)) { 
+    $upload_result = '';
+    $time = time() + (60 * 60 * 24 * 1);
+    $path = "/";
 
-    $upload_result = 'true';
+    if (move_uploaded_file($_FILES['uploadImage']['tmp_name'], $location)) { 
 
-} else { 
+        $upload_result = 'true';
 
-    $upload_result = 'false';
+    } else { 
+
+        $upload_result = 'false';
+
+    }
+    setcookie('upload_result', $upload_result, $time, $path);
+    header('Location: http://www.saveimage.com');
 
 }
-
-$mysqli = new mysqli('localhost', 'admin', 'password', 'saveimage');
 
 $result = $mysqli->query("SELECT username, filename FROM files;");
 
@@ -37,17 +39,13 @@ while($row = $result->fetch_row()){
 }
 
 $i = 0;
-$time = time() + (60 * 60 * 24 * 1);
 
 foreach($owns_and_files as $row){
 
-    echo implode('+', $row);
     setcookie($i, implode('.', $row), $time, '/');
     $i++;
 
 }
-
-setcookie('upload_result', $upload_result, $time, $path);
 
 header('Location: http://www.saveimage.com');
 
