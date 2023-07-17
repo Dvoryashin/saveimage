@@ -1,15 +1,15 @@
 import get_cookie from "./get_cookie.js";
 
-window.onload = function get_body() {
+// window.onload = function get_body() {
 
-    body = document.getElementsByTagName('body')[0];
-}
+//     body = document.getElementsByTagName('body')[0];
+// }
   
 
 var i = 0;
 var images = document.getElementById('images');
 
-while(i < 6){
+while(i < 12){
 
     var img = document.createElement("img");
     console.log(get_cookie(i));
