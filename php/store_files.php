@@ -30,8 +30,6 @@ if(isset($_POST['send_image'])){
 
     }
 
-    header('Location: http://www.saveimage.com');
-
 }
 
 $result = $mysqli->query("SELECT username, filename FROM files;");
@@ -51,6 +49,8 @@ foreach($owns_and_files as $row){
     $i++;
 
 }
+
+
 
 header('Location: http://www.saveimage.com');
 

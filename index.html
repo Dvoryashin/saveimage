@@ -7,7 +7,7 @@
     <script type="module" src="/scripts/show_images.js"></script>
 </head>
 <body>
-    <form action="/php/store_files.php" method="POST" enctype="multipart/form-data">
+    <form action="/php/store_files.php" method="POST" enctype="multipart/form-data" id = 'upload_image_form'>
         <input type="file" name="upload_image">
         <input type="submit" value="Отправить" name="send_image">
         <input type="text" placeholder="username" name="username">
