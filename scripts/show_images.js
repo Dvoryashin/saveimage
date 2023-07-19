@@ -22,6 +22,7 @@ while(i < 12){
     var author = document.createElement('h1');
     var image = document.createElement('img');
     var br = document.createElement('br');
+    var hr = document.createElement('hr');
 
     author.innerHTML = get_cookie(i).split('.')[0];
     image.src = '/files/' + get_cookie(i);
@@ -31,6 +32,7 @@ while(i < 12){
     post.appendChild(author);
     post.appendChild(image);
     post.appendChild(br);
+    post.appendChild(hr);
     
     i = i + 1;
 

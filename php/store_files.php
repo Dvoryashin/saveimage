@@ -32,7 +32,7 @@ if(isset($_POST['send_image'])){
 
 }
 
-$result = $mysqli->query("SELECT username, filename FROM files;");
+$result = $mysqli->query("SELECT username, filename FROM files ORDER BY id DESC;");
 $owns_and_files = array();
 
 while($row = $result->fetch_row()){
