@@ -8,19 +8,18 @@ if(isset($_POST['send_image'])){
     //dirname returns the path of the parent directory
     //getcwd returns the path of current working directory
     $dirpath = dirname(getcwd());
-    $location = $dirpath. '/files/'. $username . "." . $filename;
+    $location = $dirpath. '/temp/'. $username . "." . $filename;
 
     if ($username != '' and $filename != ''){
         $mysqli->query("INSERT INTO files (username, filename) VALUES ('$username', '$filename'); ");
 
         $upload_result = '';
         $path = "/";
-        move_uploaded_file($_FILES['upload_image']['tmp_name'], $location);
+
         if (move_uploaded_file($_FILES['upload_image']['tmp_name'], $location)) { 
 
             $upload_result = 'true';
-            move_uploaded_file($_FILES['upload_image']['tmp_name'], $location);
-
+            
         } else { 
 
             $upload_result = 'false';
@@ -31,6 +30,7 @@ if(isset($_POST['send_image'])){
     }
 
 }
+
 
 $result = $mysqli->query("SELECT username, filename FROM files ORDER BY id DESC;");
 $owns_and_files = array();

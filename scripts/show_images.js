@@ -2,7 +2,7 @@ import get_cookie from './get_cookie.js';
 
 window.onload = function get_body() {
 
-    var form = document.getElementById('upload_image_form');
+    const form = document.getElementById('upload_image_form');
 
     if (!localStorage.getItem('submit')){
         console.log('sub');
@@ -11,18 +11,25 @@ window.onload = function get_body() {
     }
 }
   
+window.addEventListener('scroll', function () {
+
+    const scroll_position = window.scrollY;
+    console.log(window.innerHeight);
+    console.log(scroll_position)
+
+});
 
 var i = 0;
-var posts = document.getElementById('posts');
+const posts = document.getElementById('posts');
 
-while(i < 12){
+while(i < 3){
 
-    var post = document.createElement("div");
+    const post = document.createElement("div");
 
-    var author = document.createElement('h1');
-    var image = document.createElement('img');
-    var br = document.createElement('br');
-    var hr = document.createElement('hr');
+    const author = document.createElement('h1');
+    const image = document.createElement('img');
+    const br = document.createElement('br');
+    const hr = document.createElement('hr');
 
     author.innerHTML = get_cookie(i).split('.')[0];
     image.src = '/files/' + get_cookie(i);
